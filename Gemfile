@@ -19,6 +19,9 @@ gem 'newrelic_rpm'
 gem 'bcrypt', '~> 3.1.7'
 gem 'google_timezone'
 gem 'geokit'
+gem 'capybara'
+gem 'poltergeist'
+gem 'selenium-webdriver'
 
 
 group :development, :test do
@@ -26,7 +29,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'launchy'
   gem 'pry'
   gem 'factory_girl_rails', '~> 4.5.0'
