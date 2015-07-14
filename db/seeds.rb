@@ -22,6 +22,9 @@ class Seed
       { name: "Sports" },
       { name: "Music" },
       { name: "Theater" },
+      { name: "Circus" },
+      { name: "Rodeo" },
+      { name: "Rock" }
     ])
   end
 
