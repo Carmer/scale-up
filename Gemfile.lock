@@ -144,7 +144,6 @@ GEM
     net-ssh (2.9.2)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
-    openssl (1.0.0.beta)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -272,7 +271,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   less-rails
-  openssl
   paperclip (~> 4.2)
   pg
   pry
