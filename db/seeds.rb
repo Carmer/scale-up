@@ -359,7 +359,7 @@ class Seed
         zipcode:               90329,
         display_name:          "thebillgates"},
       { full_name:             "Taylor Swift",
-        email:                 "taytay@swift.com",
+        email:                 "sample@sample.com",
         password:              "password",
         password_confirmation: "password",
         street_1:              "1111 Downing St.",
