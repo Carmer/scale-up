@@ -94,13 +94,13 @@ class LoadTest
     session.click_link("Checkout")
     session.click_link("here")
 
-    session.fill_in "user[full_name]", with: "Kristina B"
+    session.fill_in "user[full_name]", with: "Andrew Carmer"
     session.fill_in "user[display_name]", with: ("A".."Z").to_a.shuffle.first(2).join
     session.fill_in "user[email]", with: (1..20).to_a.shuffle.join + "@sample.com"
     session.fill_in "user[street_1]", with: "main st"
-    session.fill_in "user[city]", with: "Portland"
-    session.select  "Oregon", from: "user[state]"
-    session.fill_in "user[zipcode]", with: "97215"
+    session.fill_in "user[city]", with: "Denver"
+    session.select  "Colorado", from: "user[state]"
+    session.fill_in "user[zipcode]", with: "80204"
     session.fill_in "user[password]", with: "password"
     session.fill_in "user[password_confirmation]", with: "password"
     session.click_button("Create my account!")
