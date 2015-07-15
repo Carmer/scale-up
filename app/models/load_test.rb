@@ -5,8 +5,10 @@ class LoadTest
   attr_reader :session
 
   ERRORS = [
+  Capybara::Poltergeist::TimeoutError,
   EOFError,
   NoMethodError,
+  Errno::EAGAIN,
   Errno::ECONNRESET,
   Errno::EINVAL,
   Errno::EBADF,

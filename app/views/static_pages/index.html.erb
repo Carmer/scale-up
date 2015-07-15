@@ -11,6 +11,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
+        <% cache @next_events do %>
         <% @next_events.each do |event| %>
         <tr class="feature-event-row">
           <td>
@@ -22,13 +23,16 @@
           </td>
           <td class="feature-event">
             <p class="feature-event-name"><%= link_to(event.title, event_path(event)) %></p>
-            <p class="feature-event-venue"> <%= link_to(event.venue.name, venue_path(event.venue)) %></p>
+            <p class="feature-event-venue"> <%= link_to(event.venue_name, venue_path(event.venue)) %></p>
           </td>
           <td class="feature-tickets"><a href="#">
+            <% cache event.items.count do %>
               <p><%= link_to(event.items.count, event_path(event)) %></p>
+            <% end %>
               <p>Available</p>
           </a></td>
         </tr>
+        <% end %>
         <% end %>
       </table>
     </div>
@@ -43,6 +47,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
+        <% cache @just_added do %>
         <% @just_added.each do |event| %>
         <tr class="feature-event-row">
           <td>
@@ -61,6 +66,7 @@
               <p>Available</p>
           </td>
         </tr>
+        <% end %>
         <% end %>
       </table>
     </div>
