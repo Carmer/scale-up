@@ -1,4 +1,5 @@
 require 'capybara/poltergeist'
+require 'simplecov'
 
 class LoadTest
   attr_reader :session
@@ -21,6 +22,7 @@ class LoadTest
   end
 
   def browse
+    SimpleCov.start
     loop do
       visit_root
       begin
@@ -31,7 +33,7 @@ class LoadTest
         :search_events,
         :add_to_cart_create_account,
         :admin_edit_event,
-        :admin_create_and_delete_event].sample).call
+        :admin_create_event].sample).call
 
       rescue *ERRORS => error
         puts error
@@ -133,7 +135,7 @@ class LoadTest
     puts "admin event edit"
   end
 
-  def admin_create_and_delete_event
+  def admin_create_event
     log_in("admin@admin.com", "password")
     session.click_link "Manage Events"
     session.click_link "Create Event"
@@ -143,11 +145,6 @@ class LoadTest
     session.fill_in "event[start_time]", with: "2000-01-01 19:00:00"
     session.click_button "Submit"
     puts "admin create event"
-    # visit_root
-    # session.click_link("Manage Events")
-    # session.first("tr").click_link "Delete"
-    # log_out
-    # puts "admin delete event"
   end
 
   def log_out

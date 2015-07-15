@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'newrelic_rpm'
 gem 'will_paginate-bootstrap'
+gem 'simplecov'
 gem 'populator'
 
 # Use ActiveModel has_secure_password
