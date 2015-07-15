@@ -39,6 +39,7 @@ class LoadTest
 
       rescue *ERRORS => error
         puts error
+        binding.pry
         log_out if session.find_link("Logout")
       end
     end
@@ -83,6 +84,7 @@ class LoadTest
   end
 
   def search_events
+    puts "events filter used"
     session.click_link("Buy")
     session.click_link("All Tickets")
     session.click_link("All")
@@ -92,20 +94,20 @@ class LoadTest
     session.click_link("Circus")
     session.click_link("Rodeo")
     session.click_link("Rock")
-    puts "events filter used"
   end
 
   def add_to_cart_create_account
+    puts "cart"
     session.click_link("Buy")
     session.click_link("All Tickets")
     session.all("p.event-name a").sample.click
     session.all("tr").sample.find(:css, "input.btn").click
-    puts "cart"
     session.click_link("Cart(1)")
     session.click_link("Checkout")
     session.click_link("here")
 
 
+    puts "add item to cart, create account, and remove cart item"
     session.fill_in "user[full_name]", with: "Andrew Carmer"
     session.fill_in "user[display_name]", with: ("A".."Z").to_a.shuffle.first(2).join
     session.fill_in "user[email]", with: (1..20).to_a.shuffle.join + "@sample.com"
@@ -119,10 +121,10 @@ class LoadTest
 
     session.click_link("Cart(1)")
     session.click_link_or_button("Remove")
-    puts "add item to cart, create account, and remove cart item"
   end
 
   def admin_edit_event
+    puts "admin event edit"
     log_in("admin@admin.com", "password")
     session.click_link "Users"
     session.all("tr").sample.click_link "Store"
@@ -134,10 +136,10 @@ class LoadTest
     session.fill_in "event[start_time]", with: "2000-01-01 19:00:00"
     session.click_button "Submit"
     log_out
-    puts "admin event edit"
   end
 
   def admin_create_event
+    puts "admin create event"
     log_in("admin@admin.com", "password")
     session.click_link "Manage Events"
     session.click_link "Create Event"
@@ -146,7 +148,6 @@ class LoadTest
     session.fill_in "event[date]", with: 33.days.from_now.change({ hour: 5, min: 0, sec: 0  })
     session.fill_in "event[start_time]", with: "2000-01-01 19:00:00"
     session.click_button "Submit"
-    puts "admin create event"
   end
 
   def log_out
@@ -154,8 +155,8 @@ class LoadTest
   end
 
   def visit_root
-    session.visit("http://scale-it.herokuapp.com")
     puts "At root"
+    session.visit("http://scale-it.herokuapp.com")
   end
 
   def log_in(email, password)

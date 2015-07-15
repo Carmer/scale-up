@@ -11,7 +11,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
-        <% @next_events.each do |event| %>
+        <% @events.first(5).each do |event| %>
         <tr class="feature-event-row">
           <td>
             <div class="feature-event-date">
@@ -43,7 +43,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
-        <% @just_added.each do |event| %>
+        <% @events.first(2) do |event| %>
         <tr class="feature-event-row">
           <td>
             <div class="feature-event-date">
