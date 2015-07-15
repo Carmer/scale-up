@@ -5,6 +5,7 @@ class LoadTest
 
   ERRORS = [
   EOFError,
+  NoMethodError,
   Errno::ECONNRESET,
   Errno::EINVAL,
   Errno::EBADF,
