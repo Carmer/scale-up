@@ -39,7 +39,6 @@ class LoadTest
 
       rescue *ERRORS => error
         puts error
-        binding.pry
         log_out if session.find(".logout")
       end
     end
