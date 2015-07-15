@@ -37,7 +37,7 @@ class Seed
     Category.populate(12) do |category|
       category.name = Faker::Lorem.word
     end
-    puts "15 categories generated"
+    p "."
   end
 
   def generate_images
@@ -48,9 +48,8 @@ class Seed
       image.img_file_name = "blazers-nuggets.jpg"
       image.img_file_size = 103302
       image.img_content_type = "image/jpeg"
-      puts "image #{count += 1} created"
     end
-    puts "500,000 images generated"
+    p "."
   end
 
   def generate_venues
@@ -58,9 +57,8 @@ class Seed
     Venue.populate(500_000) do |venue|
       venue.name = Faker::Commerce.department
       venue.location = "#{Faker::Address.city}, #{Faker::Address.state_abbr}"
-      puts "venue #{count += 1} created"
     end
-    puts "500,000 venues generated"
+    p "."
   end
 
   def generate_events
@@ -78,9 +76,8 @@ class Seed
       event.image_id = rand(1..images)
       event.venue_id = rand(1..venues)
       event.category_id = rand(1..categories)
-      puts "event #{count += 1} created"
     end
-    puts "500,000 events generated"
+    p "events."
   end
 
   def generate_users
@@ -97,7 +94,6 @@ class Seed
       display_name: "Carmer"
     )
 
-
     count = 0
     20.times do
       User.create!(
@@ -110,10 +106,10 @@ class Seed
         city: Faker::Address.city,
         state: Faker::Address.state,
         zipcode: 80204,
-        display_name: "#{Faker::Lorem.characters(31)}#{rand(100..999)}"
+        display_name: "#{Faker::Lorem.characters(27)}#{rand(100..999)}"
       )
-      puts "user #{count += 1} created"
     end
+
     User.populate(199_980) do |user|
       user.full_name = Faker::Name.name
       user.email = "#{Faker::Lorem.characters(10)}#{Faker::Internet.email}"
@@ -123,17 +119,15 @@ class Seed
       user.city = Faker::Address.city
       user.state = Faker::Address.state
       user.zipcode = 80204
-      user.slug = "#{Faker::Lorem.characters(47)}#{rand(100..999)}"
-      puts "user #{count += 1} created"
+      user.slug = "#{Faker::Lorem.characters(27)}#{rand(100..999)}"
     end
-    puts "200,000 users generated"
+    p "users."
   end
 
   def generate_items
     count = 0
     events = Event.count
     users  = (User.count / 6).to_i
-    puts "#{users} sellers"
     Item.populate(500_000) do |item|
       item.unit_price = rand(1000..10000)
       item.pending = [ true, false ]
@@ -147,9 +141,8 @@ class Seed
       item.ticket_file_name = "fake_ticket.pdf"
       item.ticket_content_type = "application/pdf"
       item.ticket_file_size = 258297
-      puts "item #{count += 1} created"
     end
-    puts "500,000 items generated"
+    p "."
   end
 
   def generate_admins
@@ -157,7 +150,6 @@ class Seed
                  email:                 "admin@admin.com",
                  password_confirmation: "password",
                  password:              "password")
-    puts "1 admin generated"
   end
 
   def generate_orders
@@ -167,23 +159,5 @@ class Seed
       order.status = "ordered"
       order.user_id = rand(1..users)
       order.total_price = rand(1000..100000)
-      puts "order #{count += 1} created"
     end
-    puts "50,000 orders generated"
-  end
-
-  def generate_order_items
-    count = 0
-    orders = Order.count
-    items = Item.count
-    OrderItem.populate(500_000) do |order_item|
-      order_item.order_id = rand(1..orders)
-      order_item.item_id = rand(1..items)
-      puts "order item #{count += 1} created"
-    end
-    puts "500,000 order items generated"
-  end
-
-end
-
-Seed.new
+    p "m njitems." end def generate_order_items count = 0 orders = Order.count items = Item.count OrderItem.populate(500_000) do |order_item| order_item.order_id = rand(1..orders) order_item.item_id = rand(1..items) end end end Seed.new
