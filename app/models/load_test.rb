@@ -28,18 +28,19 @@ class LoadTest
     loop do
       visit_root
       begin
-      method(
-      [:create_ticket,
-        :past_orders,
-        :edit_profile,
-        :search_events,
-        :add_to_cart_create_account,
-        :admin_edit_event,
-        :admin_create_event].sample).call
+puts "in here"
+      [create_ticket,
+        past_orders,
+        edit_profile,
+        search_events,
+        add_to_cart_create_account,
+        admin_edit_event,
+        admin_create_event].sample
 
       rescue *ERRORS => error
         puts error
-        log_out if session.find(".logout")
+        binding.pry
+        log_out if session.find(:css, ".logout")
       end
     end
   end
