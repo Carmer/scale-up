@@ -65,4 +65,8 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def self.available_event
+    self.pending == false && self.sold == true
+  end
+
 end
