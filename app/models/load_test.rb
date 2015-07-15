@@ -39,6 +39,7 @@ class LoadTest
 
       rescue *ERRORS => error
         puts error
+        binding.pry
         log_out if session.find(".logout")
       end
     end
@@ -47,16 +48,17 @@ class LoadTest
   private
 
   def past_orders
+    puts "Orders"
     log_in("sample@sample.com", "password")
     session.click_link("My Hubstub")
     session.click_link("Past Orders")
     session.click_link("My Hubstub")
     session.click_link("My Listings")
     log_out
-    puts "Orders"
   end
 
   def edit_profile
+    puts "profile edited"
     log_in("sample@sample.com", "password")
     session.click_link("My Hubstub")
     session.click_link("Manage Account")
@@ -64,10 +66,10 @@ class LoadTest
     session.fill_in "user[city]", with: "Denver"
     session.click_button("Update Account")
     log_out
-    puts "profile edited"
   end
 
   def create_ticket
+    puts "created ticket"
     log_in("sample@sample.com", "password")
     session.click_link("My Hubstub")
     session.click_link("List a Ticket")
@@ -79,7 +81,6 @@ class LoadTest
     session.select  "Electronic", from: "item[delivery_method]"
     session.click_button("List Ticket")
     log_out
-    puts "created ticket"
   end
 
   def search_events
