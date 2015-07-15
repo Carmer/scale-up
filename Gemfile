@@ -14,6 +14,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'newrelic_rpm'
+gem 'will_paginate-bootstrap'
+gem 'populator'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
