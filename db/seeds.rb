@@ -160,4 +160,19 @@ class Seed
       order.user_id = rand(1..users)
       order.total_price = rand(1000..100000)
     end
-    p "m njitems." end def generate_order_items count = 0 orders = Order.count items = Item.count OrderItem.populate(500_000) do |order_item| order_item.order_id = rand(1..orders) order_item.item_id = rand(1..items) end end end Seed.new
+    p "items."
+  end
+
+  def generate_order_items
+    count = 0
+    orders = Order.count
+    items = Item.count
+    OrderItem.populate(500_000) do |order_item|
+      order_item.order_id = rand(1..orders)
+      order_item.item_id = rand(1..items)
+    end
+  end
+
+end
+
+Seed.new
