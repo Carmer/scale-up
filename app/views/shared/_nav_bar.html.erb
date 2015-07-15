@@ -5,10 +5,10 @@
     <div class="col-lg-6 login-bar-login">
       <p>
       <% if current_user && current_user.admin? %>
-        <span class="login-bar-login-links"><%= link_to "Logout", logout_path, method: :delete %></span>
+        <span class="login-bar-login-links logout"><%= link_to "Logout", logout_path, method: :delete %></span>
       <% elsif current_user %>
         <span class="login-bar-cart-link"><%= link_to "Cart(#{@cart.count})",cart_path %></span> |
-        <span class="login-bar-login-links"><%= link_to "Logout", logout_path, method: :delete %></span>
+        <span class="login-bar-login-links logout"><%= link_to "Logout", logout_path, method: :delete %></span>
       <% else %>
         <span class="login-bar-cart-link"><%= link_to "Cart(#{@cart.count})",cart_path %></span> |
         <span class="login-bar-login-links"><%= link_to "Sign up", new_user_path, method: :get %> or <%= link_to "Login", login_path %></span>
