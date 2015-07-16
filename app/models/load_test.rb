@@ -3,7 +3,6 @@ require 'capybara/poltergeist'
 class LoadTest
   attr_reader :session
 
-
   def initialize
     @session = Capybara::Session.new(:poltergeist)
   end
@@ -16,6 +15,7 @@ class LoadTest
         past_orders,
         edit_profile,
         search_events,
+        seller_things,
         add_to_cart_create_account,
         admin_edit_event,
         admin_venue,
@@ -43,8 +43,6 @@ class LoadTest
     end
   end
 
-  private
-
   def past_orders
     puts "Orders"
     log_in("sample@sample.com", "password")
@@ -66,12 +64,23 @@ class LoadTest
     log_out
   end
 
+  def seller_things
+
+    puts "seller orders"
+    session.visit("http://scale-it.herokuapp.com/carmer/orders")
+
+    puts "seller store"
+    session.visit("http://scale-it.herokuapp.com/carmer/store")
+  end
+
   def create_ticket
     puts "created ticket"
+    visit_root
     log_in("sample@sample.com", "password")
     session.click_link("My Hubstub")
     session.click_link("List a Ticket")
     session.select "sunt", from: "item[event_id]"
+    session.fill_in "item[section]", with: "TT"
     session.fill_in "item[section]", with: "TT"
     session.fill_in "item[row]", with: "666"
     session.fill_in "item[seat]", with: "10"
