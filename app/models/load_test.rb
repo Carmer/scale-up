@@ -40,7 +40,7 @@ puts "in here"
       rescue *ERRORS => error
         puts error
         binding.pry
-        log_out if session.find(:css, ".logout")
+        log_out if session.has_css?(".logout")
       end
     end
   end

@@ -3,10 +3,11 @@ class EventsController < ApplicationController
     @items  = Item.active.paginate(:page => params[:page], :per_page => 10)
 
     if params[:category]
-      @events = Event.where(category: params[:category]).paginate(:page => params[:page], :per_page => 10)
+      @events = Event.where(category: Category.find_by!(name: params[:category])).paginate(:page => params[:page], :per_page => 10)
     else
       @events = Event.all.paginate(:page => params[:page], :per_page => 10)
     end
+
   end
 
   def show
