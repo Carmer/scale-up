@@ -14,8 +14,8 @@ class Event < ActiveRecord::Base
   has_many :items
 
   scope :active,      -> { joins(:items).uniq.merge(Item.available_event).open_events }
-  scope :open_events, -> { where("date >= ?", Date.today).is_approved }
-  scope :is_approved, -> { where approved: true }
+  scope :open_events, -> { where("approved =? AND date >= ?", true, Date.today) }
+  # scope :is_approved, -> { where approved: true }
 
   def month
     date.strftime("%b")

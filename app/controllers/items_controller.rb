@@ -1,8 +1,4 @@
 class ItemsController < ApplicationController
-  def index
-    @items = item.all
-    @categories = category.all
-  end
 
   def show
     @item = Item.find(params[:id])
@@ -11,7 +7,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @user = current_user.admin? ? User.find_by(slug: params[:slug]) : current_user
-    @events = Event.active
+    @events = Event.open_events.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create
