@@ -17,6 +17,7 @@ gem 'newrelic_rpm'
 gem 'will_paginate-bootstrap'
 gem 'simplecov'
 gem 'populator'
+gem 'launchy'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

@@ -1,5 +1,6 @@
 <div class="event-page col-lg-8 col-lg-offset-2">
   <div class="row event-page-header event-page-inner">
+    <%= will_paginate @items %>
     <table>
       <tr>
         <td>
@@ -55,7 +56,7 @@
             <td class="vert-align delivery-meth"><%= item.delivery_method.capitalize %></td>
             <td class="vert-align"><%= item.dollar_amount %></td>
             <% unless current_user && (current_user.admin? || current_user.slug == item.user.slug) %>
-            <td class="vert-align"><%= button_to "Add to cart", cart_path(item_id: item.id), class: 'btn btn-default' %></td>
+            <td class="vert-align "><%= button_to "Add to cart", cart_path(item_id: item.id), class: 'btn btn-default add_cart' %></td>
             <% end %>
           </tr>
         <% end %>

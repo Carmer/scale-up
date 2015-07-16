@@ -28,7 +28,6 @@ class LoadTest
     loop do
       visit_root
       begin
-puts "in here"
       [create_ticket,
         past_orders,
         edit_profile,
@@ -39,7 +38,6 @@ puts "in here"
 
       rescue *ERRORS => error
         puts error
-        binding.pry
         log_out if session.has_css?(".logout")
       end
     end
@@ -73,7 +71,7 @@ puts "in here"
     log_in("sample@sample.com", "password")
     session.click_link("My Hubstub")
     session.click_link("List a Ticket")
-    session.select  "TLC", from: "item[event_id]"
+    session.select "sunt", from: "item[event_id]"
     session.fill_in "item[section]", with: "TT"
     session.fill_in "item[row]", with: "666"
     session.fill_in "item[seat]", with: "10"
@@ -101,7 +99,7 @@ puts "in here"
     session.click_link("Buy")
     session.click_link("All Tickets")
     session.all("p.event-name a").sample.click
-    session.all("tr").sample.find(:css, "input.btn").click
+    session.find(".add_cart]").trigger("click")
     session.click_link("Cart(1)")
     session.click_link("Checkout")
     session.click_link("here")
