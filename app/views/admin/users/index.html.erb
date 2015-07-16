@@ -4,6 +4,7 @@
   </div>
 </div>
 <div class="col-md-10 col-md-offset-1 well">
+  <%= will_paginate @users %>
 <table class="table table-hover admin-user-listing-table">
   <thead>
     <th>Name</th>
@@ -12,6 +13,7 @@
     <th></th><th></th>
   </thead>
   <tbody>
+    <%= cache @users do %>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.full_name %></td>
@@ -27,6 +29,7 @@
           <td><%= link_to "Freeze", admin_suspend_user_path(user), class: "btn btn-default"%></td>
         <% end %>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
