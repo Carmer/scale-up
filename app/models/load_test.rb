@@ -18,7 +18,11 @@ class LoadTest
         search_events,
         add_to_cart_create_account,
         admin_edit_event,
-        admin_create_event].sample
+        admin_venue,
+        admin_create_event,
+        admin_category_crud,
+        admin_venue_crud,
+        log_out].sample
 
       rescue *ERRORS => error
         puts error
@@ -120,6 +124,17 @@ class LoadTest
     log_out
   end
 
+  def admin_venue
+    puts "admin venue crud"
+    log_in("admin@admin.com", "password")
+    session.click_link "Events"
+    session.click_link "Manage Venues"
+    session.all("tr").last.click_link "Edit"
+    session.fill_in "venue[location]", with: "Charleston"
+    session.click_button("Submit")
+    log_out
+  end
+
   def admin_create_event
     puts "admin create event"
     log_in("admin@admin.com", "password")
@@ -130,6 +145,35 @@ class LoadTest
     session.fill_in "event[date]", with: 33.days.from_now.change({ hour: 5, min: 0, sec: 0  })
     session.fill_in "event[start_time]", with: "2000-01-01 19:00:00"
     session.click_button "Submit"
+    log_out
+  end
+
+  def admin_venue_crud
+    puts "venue crud"
+    log_in("admin@admin.com", "password")
+    session.click_link_or_button("Create Venue")
+    session.fill_in "venue[name]", with: "fake venue"
+    session.fill_in "venue[location]", with: "no where"
+    session.click_button("Submit")
+    session.all("tr").last.click_link "Delete"
+    log_out
+  end
+
+  def admin_category_crud
+    puts "admin category crud"
+    log_in("admin@admin.com", "password")
+    session.click_link "Events"
+    session.click_link "Manage Categories"
+    session.click_link_or_button("Create Category")
+    session.fill_in "category[name]", with: "fake category"
+    session.click_button("Submit")
+
+    session.all("tr").last.click_link "Edit"
+    session.fill_in "category[name]", with: "still fake"
+    session.click_button("Submit")
+
+    session.all("tr").last.click_link "Delete"
+    log_out
   end
 
   def log_out
@@ -137,7 +181,7 @@ class LoadTest
   end
 
   def visit_root
-    puts "At root"
+    puts "root page"
     session.visit("http://scale-it.herokuapp.com")
   end
 
@@ -151,6 +195,7 @@ class LoadTest
 
     ERRORS = [
     Capybara::Poltergeist::TimeoutError,
+    NameError,
     EOFError,
     NoMethodError,
     Errno::EAGAIN,

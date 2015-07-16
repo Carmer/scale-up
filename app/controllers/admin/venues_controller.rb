@@ -1,7 +1,7 @@
 class Admin::VenuesController < ApplicationController
   before_action :authorize
   def index
-    @venues = Venue.all
+    @venues = Venue.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def edit
