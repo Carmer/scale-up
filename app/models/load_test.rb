@@ -1,30 +1,14 @@
 require 'capybara/poltergeist'
-require 'simplecov'
 
 class LoadTest
   attr_reader :session
 
-  ERRORS = [
-  Capybara::Poltergeist::TimeoutError,
-  EOFError,
-  NoMethodError,
-  Errno::EAGAIN,
-  Errno::ECONNRESET,
-  Errno::EINVAL,
-  Errno::EBADF,
-  Net::HTTPBadResponse,
-  Net::HTTPHeaderSyntaxError,
-  Net::ProtocolError,
-  Timeout::Error,
-  Capybara::ElementNotFound
-]
 
   def initialize
     @session = Capybara::Session.new(:poltergeist)
   end
 
-  def browse
-    SimpleCov.start
+  def test_pages
     loop do
       visit_root
       begin
@@ -99,7 +83,8 @@ class LoadTest
     session.click_link("Buy")
     session.click_link("All Tickets")
     session.all("p.event-name a").sample.click
-    session.find(".add_cart]").trigger("click")
+    binding.pry
+    session.find(".add_cart").sample.trigger("click")
     session.click_link("Cart(1)")
     session.click_link("Checkout")
     session.click_link("here")
@@ -163,4 +148,20 @@ class LoadTest
     session.fill_in "session[password]", with: password
     session.click_link_or_button("Log in")
   end
+
+
+    ERRORS = [
+    Capybara::Poltergeist::TimeoutError,
+    EOFError,
+    NoMethodError,
+    Errno::EAGAIN,
+    Errno::ECONNRESET,
+    Errno::EINVAL,
+    Errno::EBADF,
+    Net::HTTPBadResponse,
+    Net::HTTPHeaderSyntaxError,
+    Net::ProtocolError,
+    Timeout::Error,
+    Capybara::ElementNotFound
+  ]
 end
