@@ -1,8 +1,10 @@
 <%= bootstrap_form_for [:admin, @event], :html => { multipart: true }  do |f| %>
   <%= f.text_field :title %>
   <%= f.text_area :description %>
+
+<%= will_paginate @venues %>
   <%= f.collection_select(:venue,
-    Venue.all,
+    @venues,
     :id,
     :name,
     { label: "Venue" }
@@ -12,8 +14,10 @@
   <%= f.form_group :approved do %>
     <%= f.check_box :approved, label: "Approved", checked: true %>
   <% end %>
+  
+<%= will_paginate @categories %>
   <%= f.collection_select(:category,
-    Category.all,
+    @categories,
     :id,
     :name,
     { label: "Category" }

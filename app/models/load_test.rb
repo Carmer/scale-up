@@ -83,7 +83,6 @@ class LoadTest
     session.click_link("Buy")
     session.click_link("All Tickets")
     session.all("p.event-name a").sample.click
-    binding.pry
     session.all(:css, "input.btn").sample.click
     session.click_link("Cart(1)")
     session.click_link("Checkout")

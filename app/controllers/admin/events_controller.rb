@@ -9,6 +9,8 @@ class Admin::EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @venues = Venue.all.paginate(:page => params[:page], :per_page => 10)
+    @categories = Category.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create
@@ -25,6 +27,8 @@ class Admin::EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @venues = Venue.all.paginate(:page => params[:page], :per_page => 10)
+    @categories = Category.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def update
