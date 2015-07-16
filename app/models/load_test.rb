@@ -31,6 +31,18 @@ class LoadTest
     end
   end
 
+  def surf
+      50000.times do |i|
+        puts "visited event #{i}"
+      begin
+        session.visit("http://scale-it.herokuapp.com/events/#{i}")
+      rescue *ERRORS => error
+        puts error
+        log_out if session.has_css?(".logout")
+      end
+    end
+  end
+
   private
 
   def past_orders

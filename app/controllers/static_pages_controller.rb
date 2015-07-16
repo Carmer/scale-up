@@ -4,6 +4,6 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @events = Event.first(20)
+    @events = Event.first(5)
   end
 end

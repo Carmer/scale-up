@@ -1,4 +1,5 @@
 <div class="seller-page-title">
+  <% cache @user do %>
   <h1><%= @user.full_name %>'s Dashboard</h1>
 </div>
 <div class="row">
@@ -197,6 +198,7 @@
                 <td class="vert-align"><%= item.dollar_amount %></td>
                 <% unless current_user.admin? %>
                   <td class="vert-align"><%= button_to "Delete Listing", seller_item_path(@user.slug, item) , method: :delete, class: 'btn btn-default' %></td>
+                <% end %>
                 <% end %>
               </tr>
             <% end %>
