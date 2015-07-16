@@ -6,7 +6,8 @@
     <%= f.check_box :active, label: "Active?", checked: true %>
   <% end %>
   <%= f.collection_select(:categories,
-    Category.all,
+    <%= will_paginate %>
+    @categories,
     :id,
     :name,
     { label: "Category (select multiple with cmd)" },

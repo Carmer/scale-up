@@ -4,7 +4,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authorize
 
   def index
-    @items = Item.all
+    @items = Item.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -21,6 +21,7 @@ class Admin::ItemsController < ApplicationController
 
   def edit
     @item = Item.find_by(id: params[:id])
+    @categories = Category.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def update
